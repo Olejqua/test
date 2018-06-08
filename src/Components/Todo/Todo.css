@@ -1,0 +1,48 @@
+.todo {
+    height: 50px;
+    display: flex;
+    font-size: 1rem;
+    border-top: 1px solid rgba(0,0,0,.1);
+    background-color: #fff;
+    transition: all .2s;
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 1em;
+    align-items: center;
+}
+
+.todo-title {
+    display: flex;
+    font-size: 1.25rem;
+    background-color: #fff;
+    transition: all .2s;
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 1em;
+    align-items: center;
+}
+
+.todo.completed * {
+    color: lightgray;
+}
+
+.todo .checkbox {
+    margin-right: .5rem;
+}
+
+.todo-title {
+    margin-right: auto;
+}
+
+.todo.completed .todo-title {
+    text-decoration: line-through;
+}
+
+/*.todo button {
+    opacity: 0;
+    transition: all .2s;
+}
+
+.todo button:not(.checkbox):hover {
+    opacity: 1;
+}*/
