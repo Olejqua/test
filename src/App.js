@@ -16,6 +16,10 @@ class App extends Component {
         };
         this.handleStatusChange = this.handleStatusChange.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
+
+        this.counter = localStorage.getItem("counter") || 0;
     }
 
     handleStatusChange(id) {
@@ -34,14 +38,42 @@ class App extends Component {
         this.setState({ todos });
     }
 
+    handleAdd(title) {
+        let todo = {
+            id: this.state.todos.length+1,
+            title,
+            completed: false
+        };
+
+        this.setState(state => {
+            return {
+                todos: state.todos.concat(todo)
+            }
+        });
+    }
+
+    handleEdit(id, title) {
+        let todos = this.state.todos.map(todo => {
+            if (todo.id === id) {
+                todo.title = title;
+            }
+            return todo;
+        });
+        this.setState({ todos });
+    }
+
     render() {
+
+        const {title} = this.props;
+        const {todos} = this.state;
+
         return (
             <div className="App">
-                <Header  title={this.props.title}
-                         todos={this.state.todos}
+                <Header  title={title}
+                         todos={todos}
                 />
                 <section className="todo-list">
-                    {this.state.todos.map(todo =>
+                    {todos.map(todo =>
                         <Todo
                             key ={todo.id}
                             id={todo.id}
@@ -49,11 +81,12 @@ class App extends Component {
                             completed={todo.completed}
                             onStatusChange={this.handleStatusChange}
                             onDelete={this.handleDelete}
+                            onEdit={this.handleEdit}
                         />)
                     }
                 </section>
 
-                <Form />
+                <Form onAdd={this.handleAdd} />
             </div>
         );
     }

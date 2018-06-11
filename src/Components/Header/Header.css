@@ -8,3 +8,9 @@ header {
     text-align: center;
     text-transform: uppercase;
 }
+
+.App-header {
+    height: 75px;
+    padding: 20px;
+    color: white;
+}
