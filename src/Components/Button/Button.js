@@ -1,16 +1,16 @@
 import React from 'react';
-import './Button.css'
-
 import PropTypes from 'prop-types';
+
+import './Button.css'
 
 function Button(props) {
     return (
         <button className={props.className} onClick={props.onClick} {...props}>
-            {props.icon ? <i className="material-icons">{props.icon}</i>
-            :
-            props.children
+            {
+                props.icon ?
+                    <i className="material-icons">{props.icon}</i> :
+                    props.children
             }
-
         </button>
     );
 }

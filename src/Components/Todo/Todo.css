@@ -1,20 +1,7 @@
-.todo,
-.todo-edit-form {
-    height: 50px;
+.todo {
     display: flex;
     font-size: 1rem;
     border-top: 1px solid rgba(0,0,0,.1);
-    background-color: #fff;
-    transition: all .2s;
-    -webkit-user-select: none;
-    user-select: none;
-    padding: 1em;
-    align-items: center;
-}
-
-.todo-title {
-    display: flex;
-    font-size: 1.25rem;
     background-color: #fff;
     transition: all .2s;
     -webkit-user-select: none;
@@ -27,34 +14,75 @@
     color: lightgray;
 }
 
-.todo .checkbox {
-    margin-right: .5rem;
-}
-
-.todo-title {
-    margin-right: auto;
-}
-
 .todo.completed .todo-title {
     text-decoration: line-through;
 }
 
-.todo-edit-form input {
-    flex: 1;
-    outline: none;
-    transition: all .2s;
-    height: 33px;
+.todo .todo-title {
+    margin-right: auto;
 }
 
-.todo-edit-form input:focus {
-    border: 1px solid #0080ff;
+.todo .checkbox {
+    margin-right: .5rem;
 }
 
-/*.todo button {
+.todo button:not(.checkbox) {
     opacity: 0;
     transition: all .2s;
 }
 
-.todo button:not(.checkbox):hover {
+.todo:hover button:not(.checkbox) {
     opacity: 1;
-}*/
+}
+
+.todo-edit-form {
+    display: flex;
+    font-size: 1rem;
+    padding: .85em;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.todo-edit-form input {
+    flex: 1;
+}
+
+.todo-edit-form .save {
+    margin-left: .5em;
+}
+
+.full-todo {
+    border-left: 1px solid rgba(0,0,0,.25);
+    border-bottom: 1px solid rgba(0,0,0,.25);
+    border-right: 1px solid rgba(0,0,0,.25);
+}
+
+.todo-description,
+.todo-importance,
+.members,
+.todo-date {
+    font-size: 1rem;
+    background-color: #fff;
+    transition: all .2s;
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 1em;
+    align-items: center;
+}
+
+.todo-edit-form {
+    font-size: 1rem;
+    border-top: 1px solid rgba(0,0,0,.1);
+    background-color: #fff;
+    transition: all .2s;
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 1em;
+    align-items: center;
+}
+
+.todo-edit-full-form {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    padding: .85em;
+}
