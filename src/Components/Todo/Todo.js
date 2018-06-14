@@ -17,9 +17,9 @@ class Todo extends Component {
     }
 
     applyValues = () => {
-        const {title, description, importance, members, startDate, endDate} = this.props;
+        const {title, description, importance, members, start, end} = this.props;
 
-        this.setState ({title, description, importance, members, startDate, endDate});
+        this.setState ({title, description, importance, members, start, end});
     }
 
     componentWillMount() {
@@ -27,10 +27,10 @@ class Todo extends Component {
     }
 
     handleSubmit = () => {
-        const {title, description, importance, members, startDate, endDate} = this.state;
+        const {title, description, importance, members, start, end} = this.state;
         const {editTodo, id} = this.props;
 
-        editTodo(id, title, description, importance, members, startDate, endDate);
+        editTodo(id, title, description, importance, members, start, end);
 
         this.setState({editing: false});
     }
@@ -51,8 +51,8 @@ class Todo extends Component {
             description,
             importance,
             members,
-            startDate,
-            endDate,
+            start,
+            end,
         } = this.props;
 
         const {fullTodoOpen} = this.state;
@@ -75,8 +75,8 @@ class Todo extends Component {
                         <div className="todo-description">Описание: {description}</div>
                         <div className="todo-importance">Важность: {importance}</div>
                         <div className="members">Участники: {members}</div>
-                        <div className="todo-date">Начало: {startDate}</div>
-                        <div className="todo-date">Окончание: {endDate}</div>
+                        <div className="todo-date">Начало: {start}</div>
+                        <div className="todo-date">Окончание: {end}</div>
                     </div>
                 }
             </Fragment>
@@ -84,7 +84,7 @@ class Todo extends Component {
     }
 
     renderForm() {
-        const {title, description, importance, members, startDate, endDate} = this.props;
+        const {title, description, importance, members, start, end} = this.props;
 
         return (
             <Fragment>
@@ -112,11 +112,11 @@ class Todo extends Component {
                     </div>
                     <div>
                         <div>Дата начала:</div>
-                    <input type="date" id="startDate" defaultValue={startDate} onChange={this.handleChange}/>
+                    <input type="datetime-local" id="start" defaultValue={start} onChange={this.handleChange}/>
                     </div>
                     <div>
                         <div>Дата Окончания:</div>
-                    <input type="date" id="endDate" defaultValue={endDate} onChange={this.handleChange}/>
+                    <input type="datetime-local" id="end" defaultValue={end} onChange={this.handleChange}/>
                     </div>
                 </div>
             </Fragment>

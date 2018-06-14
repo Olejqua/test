@@ -4,8 +4,8 @@ const todos = [
         title: 'Задача 1',
         completed: true,
         description: 'Выучить JS',
-        startDate: '2018-06-04',
-        endDate: '2019-01-01',
+        start: '06-04-2018',
+        end: '16-04-2018',
         importance: '3',
         members: ['Олег']
     },
@@ -14,8 +14,8 @@ const todos = [
         title: 'Задача 2',
         completed: false,
         description: 'Выучить React',
-        startDate: '2018-28-05',
-        endDate: '2019-01-01',
+        start: '2018-28-05',
+        end: '2018-08-06',
         importance: '3',
         members: ['Олег']
     },
@@ -24,8 +24,8 @@ const todos = [
         title: 'Задача 3',
         completed: false,
         description: 'Выучить Redux',
-        startDate: '2018-12-06',
-        endDate: '2019-01-01',
+        start: '2018-12-06',
+        end: '2019-01-01',
         importance: '3',
         members: ['Олег']
     },

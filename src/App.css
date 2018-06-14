@@ -24,5 +24,11 @@ input {
   outline: none;
 }
 
+Calendar {
+  width: 100%;
+  height: 100%;
+}
+
+
 
 

@@ -15,25 +15,25 @@ class Form extends Component {
             description: '',
             importance: '',
             members: '',
-            startDate: '',
-            endDate: '',
+            start: '',
+            end: '',
         };
     }
 
     addNewTodo = event => {
-        const {title, description, importance, members, startDate, endDate} = this.state;
+        const {title, description, importance, members, start, end} = this.state;
 
         event.preventDefault();
 
-        if (title && description && importance && members && startDate && endDate) {
-            this.props.addTodo(title, description, importance, members, startDate, endDate);
+        if (title && description && importance && members && start && end) {
+            this.props.addTodo(title, description, importance, members, start, end);
             this.setState({
                 title: '',
                 description: '',
                 importance: '',
                 members: '',
-                startDate: '',
-                endDate: ''
+                start: '',
+                end: ''
             });
         } else {
             alert('Пожалуйста, заполните все поля!')
@@ -47,7 +47,7 @@ class Form extends Component {
     }
 
     render() {
-        const {fullFormOpen, title, description, importance, members, startDate, endDate} = this.state;
+        const {fullFormOpen, title, description, importance, members, start, end} = this.state;
 
         return (
             <div>
@@ -103,9 +103,9 @@ class Form extends Component {
                         <div>
                             <div>Дата начала:</div>
                             <input
-                               id="startDate"
-                               type="date"
-                               value={startDate}
+                               id="start"
+                               type="datetime-local"
+                               value={start}
                                placeholder="Дата начала"
                                onChange={this.updateField}
                             />
@@ -113,9 +113,9 @@ class Form extends Component {
                         <div>
                             <div>Дата Окончания:</div>
                             <input
-                               id="endDate"
-                               type="date"
-                               value={endDate}
+                               id="start"
+                               type="datetime-local"
+                               value={end}
                                placeholder="Дата окончания"
                                onChange={this.updateField}
                             />

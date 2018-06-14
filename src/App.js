@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import Header from './Components/Header/Header';
 import Todo from './Components/Todo/Todo';
 import Form from './Components/Form/Form';
+import Calendar from './Components/Calendar/Calendar'
 
+import  'react-big-calendar/lib/css/react-big-calendar.css'
 import './App.css';
 
 import todos from './todos';
@@ -61,8 +63,8 @@ class App extends Component {
                 todo.description = description;
                 todo.importance = importance;
                 todo.members = members;
-                todo.startDate = startDate;
-                todo.endDate = endDate;
+                todo.start = startDate;
+                todo.end = endDate;
             }
             return todo;
         });
@@ -76,25 +78,28 @@ class App extends Component {
         const {todos} = this.state;
 
         return (
-            <div className="App">
-                <Header
-                    title={title}
-                    todos={todos}
-                />
-                <section className="todo-list">
-                    {todos.map(todo =>
-                        <Todo
-                            key={todo.id}
-                            changeStatus={this.changeStatus}
-                            deleteTodo={this.deleteTodo}
-                            editTodo={this.editTodo}
-                            {...todo}
-                        />)
-                    }
-                </section>
-                <Form addTodo={this.addTodo} />
+            <div>
+                <div className="App">
+                    <Header
+                        title={title}
+                        todos={todos}
+                    />
+                    <section className="todo-list">
+                        {todos.map(todo =>
+                            <Todo
+                                key={todo.id}
+                                changeStatus={this.changeStatus}
+                                deleteTodo={this.deleteTodo}
+                                editTodo={this.editTodo}
+                                {...todo}
+                            />)
+                        }
+                    </section>
+                    <Form addTodo={this.addTodo} />
+                </div>
+                <Calendar/>
             </div>
-        );
+    );
     }
 }
 

@@ -6,6 +6,7 @@
     "moment": "^2.22.2",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
+    "react-big-calendar": "^0.19.1",
     "react-dom": "^16.4.0",
     "react-moment": "^0.7.0",
     "react-scripts": "1.1.4"
