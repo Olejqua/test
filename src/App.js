@@ -9,55 +9,85 @@ import Calendar from './Components/Calendar/Calendar'
 import  'react-big-calendar/lib/css/react-big-calendar.css'
 import './App.css';
 
-import todos from './todos';
+import todolist from './todos';
 
 class App extends Component {
     constructor(props) {
         super(props);
+    }
 
-        this.state = {
-            todos: todos
-        };
+    updateStorage = (newTodos) => {
+        this.setState({
+            todos: newTodos
+        })
+
+        localStorage.removeItem("todos");
+        localStorage.setItem("todos", JSON.stringify(newTodos));
+    }
+
+    componentWillMount() {
+        const todosInStorage = localStorage.getItem("todos");
+
+        if (todosInStorage) {
+            this.setState({
+                todos: JSON.parse(todosInStorage)
+            })
+        } else {
+            localStorage.setItem("todos", JSON.stringify(todolist));
+            this.setState({
+                todos: todolist
+            })
+        }
     }
 
     changeStatus = (id) => {
-        const todos = this.state.todos.map(todo => {
+        const newTodos = this.state.todos.map(todo => {
             if (todo.id === id) {
                 todo.completed = !todo.completed;
             }
             return todo;
         });
 
-        this.setState({ todos });
+       this.updateStorage(newTodos);
     }
 
     deleteTodo = (id) => {
-        const todos = this.state.todos.filter(todo => todo.id !== id);
+        const newTodos = this.state.todos.filter(todo => todo.id !== id);
 
-        this.setState({ todos });
+        this.setState({ todos : newTodos });
     }
 
-    addTodo = (title, description, importance, members, startDate, endDate) => {
+    nextId = () => {
+        const {todos} = this.state;
+         if (todos.length === 0) {
+             return 1}
+         else {
+             return todos[todos.length-1].id+1
+         }
+    }
+
+    addTodo = (title, description, importance, members, start, end) => {
+        const {todos} = this.state;
         const todo = {
-            id: this.state.todos.length+1,
+            id: this.nextId(),
             title,
             completed: false,
             description,
             importance,
             members,
-            startDate,
-            endDate
+            start,
+            end
         };
 
-        this.setState(state => {
-            return {
-                todos: state.todos.concat(todo)
-            }
-        });
+        const newTodos = todos.concat(todo);
+
+        this.updateStorage(newTodos);
     }
 
     editTodo = (id, title, description, importance, members, startDate, endDate) => {
-        let todos = this.state.todos.map(todo => {
+        const {todos} = this.state;
+
+        todos.forEach(todo => {
             if (todo.id === id) {
                 todo.title = title;
                 todo.description = description;
@@ -66,16 +96,59 @@ class App extends Component {
                 todo.start = startDate;
                 todo.end = endDate;
             }
-            return todo;
         });
-        this.setState({ todos });
+        this.updateStorage(todos);
     }
 
+    filterTodos = (event) => {
+        this.setState({filter: event.target.value})
+    }
 
+    filteredTodos = () => {
+        const {todos, filter} = this.state;
+        const day = new Date();
+
+         switch (filter) {
+            case "all": {
+                return todos
+            }
+             case "today": {
+                return todos.filter((todo) => {
+                    const todoStartDate = new Date(todo.start);
+
+                    return todoStartDate.getDate() === day.getDate()
+                })
+            }
+             case "tomorrow": {
+                return todos.filter((todo) => {
+                    const todoStartDate = new Date(todo.start);
+
+                    return todoStartDate.getDate() === day.getDate();
+                })
+            }
+             case "onWeek": {
+                return todos.filter((todo) => {
+                    const todoStartDate = new Date(todo.start);
+
+                    return todoStartDate.getDay() === day.getDay();
+                })
+            }
+             case "onMonth": {
+                return todos.filter((todo) => {
+                    const todoStartDate = new Date(todo.start);
+
+                    return todoStartDate.getMonth() === day.getMonth();
+                })
+            }
+            default: {
+                return todos
+            }
+        }
+    }
 
     render() {
         const {title} = this.props;
-        const {todos} = this.state;
+        const {todos, filter} = this.state;
 
         return (
             <div>
@@ -84,8 +157,17 @@ class App extends Component {
                         title={title}
                         todos={todos}
                     />
+                    <div>
+                        <select onChange={this.filterTodos}>
+                            <option value="all">Все</option>
+                            <option value="today">Сегодня</option>
+                            <option value="tomorrow">Завтра</option>
+                            <option value="onWeek">На неделю</option>
+                            <option value="onMonth">В этом месяце</option>
+                        </select>
+                    </div>
                     <section className="todo-list">
-                        {todos.map(todo =>
+                        {this.filteredTodos().map(todo =>
                             <Todo
                                 key={todo.id}
                                 changeStatus={this.changeStatus}
@@ -97,7 +179,7 @@ class App extends Component {
                     </section>
                     <Form addTodo={this.addTodo} />
                 </div>
-                <Calendar/>
+                <Calendar todos={todos}/>
             </div>
     );
     }

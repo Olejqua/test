@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import Checkbox from '../Checkbox/Checkbox';
 import Button from '../Button/Button';
@@ -41,6 +42,8 @@ class Todo extends Component {
         this.setState({[id]: value})
     }
 
+
+
     renderDisplay() {
         const {
             completed,
@@ -75,8 +78,8 @@ class Todo extends Component {
                         <div className="todo-description">Описание: {description}</div>
                         <div className="todo-importance">Важность: {importance}</div>
                         <div className="members">Участники: {members}</div>
-                        <div className="todo-date">Начало: {start}</div>
-                        <div className="todo-date">Окончание: {end}</div>
+                        <div className="todo-date">Начало: {moment(start).format('LLL')}</div>
+                        <div className="todo-date">Окончание: {moment(end).format('LLL')}</div>
                     </div>
                 }
             </Fragment>

@@ -13,7 +13,7 @@ class Form extends Component {
             fullFormOpen: false,
             title: '',
             description: '',
-            importance: '',
+            importance: 1,
             members: '',
             start: '',
             end: '',
@@ -25,7 +25,8 @@ class Form extends Component {
 
         event.preventDefault();
 
-        if (title && description && importance && members && start && end) {
+        //if (title && description && importance && members && start && end) {
+        if (title && start) {
             this.props.addTodo(title, description, importance, members, start, end);
             this.setState({
                 title: '',
@@ -85,12 +86,13 @@ class Form extends Component {
                             <div>Важность:</div>
                             <select
                                id='importance'
+
                                value={importance}
                                onChange={this.updateField}
                             >
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
+                                <option value={1}>Обычный</option>
+                                <option value={2}>Средний</option>
+                                <option value={3}>Высокий</option>
                             </select>
                         </div>
                             <div>Участники:</div>
@@ -113,7 +115,7 @@ class Form extends Component {
                         <div>
                             <div>Дата Окончания:</div>
                             <input
-                               id="start"
+                               id="end"
                                type="datetime-local"
                                value={end}
                                placeholder="Дата окончания"
