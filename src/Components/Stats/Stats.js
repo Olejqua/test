@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 
 function Stats(props) {
 
-    let total = props.todos.length;
-    let completed = props.todos.filter(todo => todo.completed).length;
+    const {todos} = props
+
+    let total = todos.length;
+    let completed = todos.filter(todo => todo.completed).length;
     let notCompleted = total - completed;
 
 
