@@ -12,14 +12,25 @@ import './App.css';
 
 import todos from './todos'
 
+
+
 class App extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //
+    //     }
+    // }
+
     render() {
         return (
             <BrowserRouter>
                 <div>
                     <Navigation />
                     <Switch>
-                        <Route path="/" component={TodoList} exact/>
+                        <Route path="/" exact>
+                            <TodoList />
+                        </Route>
                         <Route path="/calendar">
                             <Calendar todos={todos}/>
                         </Route>

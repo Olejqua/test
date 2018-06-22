@@ -1,11 +1,29 @@
-import React, {Component, Fragment} from 'react';
-import moment from "moment/moment";
-import PropTypes from "prop-types";
-class Todo extends Component {
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+
+import './Modal.css';
+
+class Modal extends Component {
+
+    componentWillMount() {
+        this.root = document.createElement('div');
+        document.body.appendChild(this.root);
+    }
+
+    componentWillUnmount() {
+        document.body.removeChild(this.root);
+    }
 
     render() {
-        return this.state.editing ? this.renderForm() : this.renderDisplay()
+        return ReactDOM.createPortal(
+            <div className="modal">
+                <button className="modal__close-button" onClick={this.props.onClose}>Закрыть</button>
+                {this.props.children}
+            </div>,
+            this.root
+        );
     }
 }
 
-export default Todo;
+
+export default Modal;

@@ -17,7 +17,7 @@ class TodoList extends Component {
     updateStorage = (newTodos) => {
         this.setState({
             todos: newTodos
-        })
+        });
 
         localStorage.removeItem("todos");
         localStorage.setItem("todos", JSON.stringify(newTodos));
@@ -171,7 +171,7 @@ class TodoList extends Component {
                                 changeStatus={this.changeStatus}
                                 deleteTodo={this.deleteTodo}
                                 editTodo={this.editTodo}
-                                {...todo}
+                                todo={todo}
                             />)
                         }
                     </section>
