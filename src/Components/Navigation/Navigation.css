@@ -1,5 +1,6 @@
 .nav {
-    margin: 0;
+    margin-bottom: 10px;
+    margin-top: 0;
     padding: 1em;
     display: flex;
     background: linear-gradient(to bottom right, #5D9CEC, #967adc);
@@ -12,6 +13,10 @@
     font-size: 1.5rem;
 }
 
+.nav-item:hover {
+    color: dimgrey;
+}
+
 .nav-href {
     justify-content: center;
     padding: 1em;
@@ -19,10 +24,6 @@
     text-decoration: none;
     transition: background-color 0.5s, color 0.5s;
 }
-
-.nav-href:hover {
-     border-bottom: 2px solid #222222;
- }
 
 .slam-left {
     margin-right: auto;

@@ -12,11 +12,14 @@ import todolist from '../../todos';
 class TodoList extends Component {
     constructor(props) {
         super(props);
+
+
     }
 
     updateStorage = (newTodos) => {
         this.setState({
             todos: newTodos
+
         })
 
         localStorage.removeItem("todos");
@@ -106,6 +109,13 @@ class TodoList extends Component {
         const {todos, filter} = this.state;
         const day = new Date();
 
+        Date.prototype.getWeek = function() {
+            let oneJan = new Date(this.getFullYear(),0,1);
+            let today = new Date(this.getFullYear(),this.getMonth(),this.getDate());
+            let dayOfYear = ((today - oneJan + 86400000)/86400000);
+            return Math.ceil(dayOfYear/7)
+        };
+
         switch (filter) {
             case "all": {
                 return todos
@@ -121,14 +131,14 @@ class TodoList extends Component {
                 return todos.filter((todo) => {
                     const todoStartDate = new Date(todo.start);
 
-                    return todoStartDate.getDate() === day.getDate();
+                    return todoStartDate.getDate() === day.getDate()+1;
                 })
             }
             case "onWeek": {
                 return todos.filter((todo) => {
                     const todoStartDate = new Date(todo.start);
 
-                    return todoStartDate.getDay() === day.getDay();
+                    return todoStartDate.getWeek() === day.getWeek();
                 })
             }
             case "onMonth": {

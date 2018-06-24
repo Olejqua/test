@@ -7,7 +7,7 @@ function Header(props) {
     return (
         <header className="App-header">
             <Stats todos={props.todos} />
-            <h1>{props.title}</h1>
+            <h1 className="header-title">{props.title}</h1>
         </header>
     );
 }

@@ -8,8 +8,9 @@ header {
     text-transform: uppercase;
 }
 
-header h1 {
+h1.header-title {
     display: inline-block;
     color: #00d8ff;
     margin: 1rem auto;
+    text-align: center;
 }
