@@ -21,7 +21,6 @@ class Modal extends Component {
             <div className="modal">
                 <div>
                     <span onClick={this.props.onClose}><Button className="clear icon" icon="clear"/></span>
-
                     {this.props.children}
                 </div>
             </div>,

@@ -1,0 +1,10 @@
+.calendar-title {
+    display: flex;
+    color: #757575;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.calendar-title * {
+    justify-content: center;
+}

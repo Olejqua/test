@@ -7,7 +7,7 @@ const todos = [
         completed: true,
         description: 'Выучить JS',
         start: moment(),
-        end: moment(),
+        end: moment()+1,
         importance: '3',
         members: ['Олег']
     },
@@ -16,8 +16,8 @@ const todos = [
         title: 'Задача 2',
         completed: false,
         description: 'Выучить React',
-        start: '2018-28-05',
-        end: '2018-08-06',
+        start: moment(),
+        end: moment(),
         importance: '3',
         members: ['Олег']
     },
@@ -26,19 +26,8 @@ const todos = [
         title: 'Задача 3',
         completed: false,
         description: 'Выучить Redux',
-        start: '2018-12-06',
-        end: '2019-01-01',
-        importance: '3',
-        members: ['Олег']
-    },
-
-    {
-        id: 4,
-        title: 'Задача 3',
-        completed: false,
-        description: 'Выучить Redux',
-        start: '2018-06-15T11:01',
-        end: '2018-06-15T12:01',
+        start: moment(),
+        end: moment(),
         importance: '3',
         members: ['Олег']
     },

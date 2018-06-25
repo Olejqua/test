@@ -3,14 +3,12 @@ header {
     align-items: center;
     padding: 0 1rem;
     color: white;
-    background-color: #222;
+    background-color: white;
     text-align: center;
-    text-transform: uppercase;
 }
 
-h1.header-title {
+h1 {
     display: inline-block;
-    color: #00d8ff;
+    color: #757575;
     margin: 1rem auto;
-    text-align: center;
 }

@@ -13,7 +13,7 @@
     font-size: 1.5rem;
 }
 
-.nav-item:hover {
+.nav-item *:hover {
     color: dimgrey;
 }
 
@@ -27,6 +27,7 @@
 
 .slam-left {
     margin-right: auto;
+    font-size: 1rem;
 }
 
 @media all and (max-width: 500px) {

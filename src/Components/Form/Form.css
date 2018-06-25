@@ -13,24 +13,24 @@ text-align: right;
     line-height: 32px;
 }
 
-.todo-form input {
+input {
     flex: 1;
     outline: none;
     transition: all .2s;
 }
 
-.todo-form input:focus {
+input:focus {
     border: 1px solid #00d8ff;
 }
 
-.todo-form button {
+button {
     margin-left: 10px;
 }
 
 .full-form-open-bot {
     display: flex;
     flex-direction: column;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: black;
     background-color: #fff;
     padding: 17px;
@@ -39,7 +39,6 @@ text-align: right;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
 .full-form-add-string {
-    font-size: 1rem;
     background-color: #fff;
     transition: all .2s;
     user-select: none;

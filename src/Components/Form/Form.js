@@ -7,6 +7,9 @@ import Modal from '../Modal/Modal';
 import './Form.css';
 
 class Form extends Component {
+    static propTypes = {
+        addTodo: PropTypes.func.isRequired
+    };
     constructor(props) {
         super(props);
 
@@ -62,7 +65,7 @@ class Form extends Component {
                 <div className="add-todo-button-title">Создать задачу</div>
                 <Button
                     className="full-form-open icon"
-                    icon="add_box"
+                    icon="add_circle_outline"
                     onClick={this.toggleModal}
                 />
                 {isModalOpen &&
@@ -79,8 +82,9 @@ class Form extends Component {
                         </div>
                         <div className="full-form-add-string">
                             <div>Описание:</div>
-                            <input
-                                type="textarea"
+                            <textarea
+                                cols="70"
+                                rows="6"
                                 id='description'
                                 value={description}
                                 placeholder="Введите описание задачи"
@@ -91,13 +95,12 @@ class Form extends Component {
                             <div>Важность:</div>
                             <select
                                 id='importance'
-
                                 value={importance}
                                 onChange={this.updateField}
                             >
-                                <option value={1}>Обычный</option>
-                                <option value={2}>Средний</option>
-                                <option value={3}>Высокий</option>
+                                <option value={1}>низкая</option>
+                                <option value={2}>средняя</option>
+                                <option value={3}>высокая</option>
                             </select>
                         </div>
                         <div className="full-form-add-string">
@@ -137,9 +140,5 @@ class Form extends Component {
         );
     }
 }
-
-Form.propTypes = {
-    addTodo: PropTypes.func.isRequired
-};
 
 export default Form;

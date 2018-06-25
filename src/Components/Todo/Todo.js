@@ -9,6 +9,13 @@ import Modal from '../Modal/Modal';
 import './Todo.css'
 
 class Todo extends Component {
+    static propTypes = {
+        title: PropTypes.string.isRequired,
+        completed: PropTypes.bool.isRequired,
+        changeStatus: PropTypes.func.isRequired,
+        deleteTodo: PropTypes.func.isRequired,
+        editTodo: PropTypes.func.isRequired
+    };
     constructor(props) {
         super(props);
 
@@ -26,7 +33,7 @@ class Todo extends Component {
         const {title, description, importance, members, start, end} = this.props;
 
         this.setState ({title, description, importance, members, start, end});
-    }
+    };
 
     componentWillMount() {
         this.applyValues();
@@ -39,15 +46,13 @@ class Todo extends Component {
         editTodo(id, title, description, importance, members, start, end);
 
         this.setState({editing: false});
-    }
+    };
 
     handleChange = (event) => {
         const {id, value} = event.target;
 
         this.setState({[id]: value})
-    }
-
-
+    };
 
     renderDisplay() {
         const {
@@ -65,7 +70,6 @@ class Todo extends Component {
 
         const {isModalOpen} = this.state;
 
-
         return (
             <Fragment>
                 <div className={`todo ${completed ? 'completed' : ''}`}>
@@ -73,9 +77,12 @@ class Todo extends Component {
                         checked={completed}
                         onChange={() => changeStatus(id)}
                     />
-                    <span className="todo-title" onClick={this.toggleModal}>{title}</span>
-                    <Button className="edit icon" icon="edit" onClick={()=> this.setState({editing:true})} />
-                    <Button className="delete icon" icon="delete" onClick={() => deleteTodo(id)} />
+                    <span className="todo-title"
+                          onClick={this.toggleModal}>{title}</span>
+                    <Button className="edit icon" icon="edit"
+                            onClick={()=> {this.toggleModal();this.setState({editing:true})}} />
+                    <Button className="delete icon" icon="delete"
+                            onClick={() => deleteTodo(id)} />
                 </div>
                 {isModalOpen &&
                     <Modal onClose={this.toggleModal}>
@@ -85,10 +92,11 @@ class Todo extends Component {
                                     checked={completed}
                                     onChange={() => changeStatus(id)}
                                 />
-                                <Button className="edit icon" icon="edit" onClick={()=> this.setState({editing:true})} />
-                                <Button className="delete icon" icon="delete" onClick={() => deleteTodo(id)} />
+                                <Button className="edit icon" icon="edit"
+                                        onClick={()=> this.setState({editing:true})} />
+                                <Button className="delete icon" icon="delete"
+                                        onClick={() => deleteTodo(id)} />
                             </div>
-
                             <div className="todo-title-full">Название задачи: {title}</div>
                             <div className="todo-description">Описание: {description}</div>
                             <div className="todo-importance">Важность: {importance}</div>
@@ -115,6 +123,7 @@ class Todo extends Component {
             start,
             end
         } = this.props;
+        const {isModalOpen} = this.state;
 
         return (
             <Fragment>
@@ -127,40 +136,44 @@ class Todo extends Component {
                     <Button className="edit icon" icon="edit" onClick={()=> this.setState({editing:true})} />
                     <Button className="delete icon" icon="delete" onClick={() => deleteTodo(id)} />
                 </div>
-                <Modal>
-                    <button className="modal-close-btn" onClick={this.props.onClose}>Закрыть</button>
+                { isModalOpen && <Modal onClose={() => {this.toggleModal();this.setState({editing:false})}}>
                     <div className="todo-edit-full-form">
                         <div className="editing-string">
-                        <div>Название задачи:</div>
-                            <input id="title" defaultValue={title} onChange={this.handleChange}/>
+                            <div>Название задачи:</div>
+                                <input id="title" defaultValue={title} onChange={this.handleChange}/>
                         </div>
                         <div className="editing-string">
                             <div>Описание:</div>
-                            <input type="textarea" id="description" defaultValue={description} onChange={this.handleChange}/>
+                                <textarea
+                                    cols="70"
+                                    rows="6"
+                                    id="description"
+                                    defaultValue={description}
+                                    onChange={this.handleChange}/>
                         </div>
                         <div className="editing-string">
                             <div>Важность:</div>
-                            <select id="importance" defaultValue={importance} onChange={this.handleChange}>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
+                                <select id="importance" defaultValue={importance} onChange={this.handleChange}>
+                                    <option value={1}>низкая</option>
+                                    <option value={2}>средняя</option>
+                                    <option value={3}>высокая</option>
+                                </select>
                         </div>
                         <div className="editing-string">
                             <div>Участники:</div>
-                        <input id="members" defaultValue={members} onChange={this.handleChange}/>
+                                <input id="members" defaultValue={members} onChange={this.handleChange}/>
                         </div>
                         <div className="editing-string">
                             <div>Дата начала:</div>
-                        <input type="datetime-local" id="start" defaultValue={start} onChange={this.handleChange}/>
+                                 <input type="datetime-local" id="start" defaultValue={start} onChange={this.handleChange}/>
                         </div>
                         <div className="editing-string">
                             <div>Дата Окончания:</div>
-                        <input type="datetime-local" id="end" defaultValue={end} onChange={this.handleChange}/>
+                                <input type="datetime-local" id="end" defaultValue={end} onChange={this.handleChange}/>
                         </div>
                         <Button className="save icon" icon="save" onClick={this.handleSubmit} />
                     </div>
-                </Modal>
+                </Modal>}
             </Fragment>
         );
     }
@@ -169,13 +182,5 @@ class Todo extends Component {
         return this.state.editing ? this.renderForm() : this.renderDisplay()
     }
 }
-
-Todo.propTypes = {
-    title: PropTypes.string.isRequired,
-    completed: PropTypes.bool.isRequired,
-    changeStatus: PropTypes.func.isRequired,
-    deleteTodo: PropTypes.func.isRequired,
-    editTodo: PropTypes.func.isRequired
-};
 
 export default Todo;
