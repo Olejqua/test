@@ -23,6 +23,8 @@ class Form extends Component {
 
             isModalOpen: false,
         };
+
+        this.store = this.props.store;
     }
 
     toggleModal = () => {
@@ -30,20 +32,22 @@ class Form extends Component {
     };
 
     addNewTodo = event => {
-        const {title, description, importance, members, start, end} = this.state;
+        const {title} = this.state;
 
+        const {addTodo} = this.props;
+console.log(addTodo);
         event.preventDefault();
 
         //if (title && description && importance && members && start && end) {
-        if (title && start) {
-            this.props.addTodo(title, description, importance, members, start, end);
+        if (title) {
+            addTodo(title);
             this.setState({
                 title: '',
-                description: '',
-                importance: '',
-                members: '',
-                start: '',
-                end: ''
+                // description: '',
+                // importance: '',
+                // members: '',
+                // start: '',
+                // end: ''
             });
         } else {
             alert('Пожалуйста, заполните все поля!')

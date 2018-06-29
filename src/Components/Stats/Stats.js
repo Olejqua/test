@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function Stats(props) {
 
-    const {todos} = props
+    const {todos} = props;
 
     let total = todos.length;
     let completed = todos.filter(todo => todo.completed).length;
