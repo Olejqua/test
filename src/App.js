@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import NavigationContainer from './containers/NavigationContainer';
 import Header from './Components/Header/Header';
+import FilterContainer from './containers/FilterContainer';
 import ListContainer from './containers/ListContainer';
 import FormContainer from './containers/FormContainer';
 import CalendarContainer from './containers/CalendarContainer';
@@ -21,6 +22,7 @@ class App extends Component {
                         <Route path="/" exact>
                             <div className="TodoList">
                                 <Header />
+                                <FilterContainer />
                                 <ListContainer />
                                 <FormContainer />
                             </div>

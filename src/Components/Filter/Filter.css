@@ -1,0 +1,33 @@
+.todo-filter {
+    display: flex;
+}
+
+.todo-filter a {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    position: relative;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.todo-filter a:hover {
+    background-color: rgba(158,158,158,.1);
+}
+
+.todo-filter a.is-active i {
+    color: #764abc;
+}
+
+.todo-filter a.is-active::after {
+    height: 2px;
+    width: 100%;
+    display: block;
+    content: " ";
+    bottom: -1px;
+    left: 0;
+    position: absolute;
+    background: #764abc;
+}

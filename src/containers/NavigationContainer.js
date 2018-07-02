@@ -6,7 +6,7 @@ import Navigation from '../Components/Navigation/Navigation';
 // Сопоставить состояние со свойствами (принимает состояние, возвращает объект)
 function mapStateToProps(state) {
     return {
-        todos: state    // Св-во презентационного компонента
+        todos: state.todos    // Св-во презентационного компонента
     }
 }
 
