@@ -1,25 +1,16 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import promise from 'redux-promise';
+import logger from 'redux-logger';
 
 import reducer from '../reducers';
+import localStorage from '../middleware/local-storage';
 
 const initialState = {};
 
-const middleware = [thunk];
+const middleware = [thunk, promise, localStorage, logger];
 
-function addPromiseThunkSupport(store) {
-    const dispatch = store.dispatch;
 
-    return action => {
-        if (typeof action.then === 'function') {
-            return action.then(dispatch);
-        } else if (typeof action === 'function') {
-            return action(dispatch);
-        }
-
-        return dispatch(action);
-    };
-}
 
 const store = createStore(reducer,
     initialState,
@@ -29,5 +20,5 @@ const store = createStore(reducer,
     )
 );
 
-store.dispatch = addPromiseThunkSupport(store);
+
 export default store;

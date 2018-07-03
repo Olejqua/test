@@ -10,7 +10,7 @@ function List (props) {
             {!props.fetching && props.todos.length ?
                 props.todos.map(todo =>
                     <Todo
-                        key={todo.id}
+                        key={todo._id}
                         changeStatus={props.changeStatus}
                         deleteTodo={props.deleteTodo}
                         editTodo={props.editTodo}
@@ -25,7 +25,7 @@ function List (props) {
 
 List.propTypes = {
     todos: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        _id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         completed: PropTypes.bool.isRequired
     }))

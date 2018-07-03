@@ -41,17 +41,17 @@ class Todo extends Component {
 
     handleSubmit = () => {
         const {title, description, importance, members, start, end} = this.state;
-        const {editTodo, id} = this.props;
-console.log(id)
-        editTodo(id, title, description, importance, members, start, end);
+        const {editTodo, _id} = this.props;
+console.log(_id);
+        editTodo(_id, title, description, importance, members, start, end);
 
         this.setState({editing: false});
     };
 
     handleChange = (event) => {
-        const {id, value} = event.target;
+        const {id: _id, value} = event.target;
 
-        this.setState({[id]: value})
+        this.setState({[_id]: value})
     };
 
     renderDisplay() {
@@ -60,7 +60,7 @@ console.log(id)
             changeStatus,
             deleteTodo,
             title,
-            id,
+            _id,
             description,
             importance,
             members,
@@ -75,14 +75,14 @@ console.log(id)
                 <div className={`todo ${completed ? 'completed' : ''}`}>
                     <Checkbox
                         checked={completed}
-                        onChange={() => changeStatus(id)}
+                        onChange={() => changeStatus(_id)}
                     />
                     <span className="todo-title"
                           onClick={this.toggleModal}>{title}</span>
                     <Button className="edit icon" icon="edit"
                             onClick={()=> {this.toggleModal();this.setState({editing:true})}} />
                     <Button className="delete icon" icon="delete"
-                            onClick={() => deleteTodo(id)} />
+                            onClick={() => deleteTodo(_id)} />
                 </div>
                 {isModalOpen &&
                     <Modal onClose={this.toggleModal}>
@@ -90,12 +90,12 @@ console.log(id)
                             <div className="full-todo-btn">
                                 <Checkbox
                                     checked={completed}
-                                    onChange={() => changeStatus(id)}
+                                    onChange={() => changeStatus(_id)}
                                 />
                                 <Button className="edit icon" icon="edit"
                                         onClick={()=> this.setState({editing:true})} />
                                 <Button className="delete icon" icon="delete"
-                                        onClick={() => deleteTodo(id)} />
+                                        onClick={() => deleteTodo(_id)} />
                             </div>
                             <div className="todo-title-full">Название задачи: {title}</div>
                             <div className="todo-description">Описание: {description}</div>
@@ -116,7 +116,7 @@ console.log(id)
             completed,
             changeStatus,
             deleteTodo,
-            id,
+            _id,
             description,
             importance,
             members,
@@ -130,11 +130,11 @@ console.log(id)
                 <div className={`todo ${completed ? 'completed' : ''}`}>
                     <Checkbox
                         checked={completed}
-                        onChange={() => changeStatus(id)}
+                        onChange={() => changeStatus(_id)}
                     />
                     <span className="todo-title" onClick={this.toggleModal}>{title}</span>
                     <Button className="edit icon" icon="edit" onClick={()=> this.setState({editing:true})} />
-                    <Button className="delete icon" icon="delete" onClick={() => deleteTodo(id)} />
+                    <Button className="delete icon" icon="delete" onClick={() => deleteTodo(_id)} />
                 </div>
                 { isModalOpen && <Modal onClose={() => {this.toggleModal();this.setState({editing:false})}}>
                     <div className="todo-edit-full-form">

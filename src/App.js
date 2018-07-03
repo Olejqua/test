@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-
-import NavigationContainer from './containers/NavigationContainer';
 import Header from './Components/Header/Header';
+import Navigation from './Components/Navigation/Navigation';
 import FilterContainer from './containers/FilterContainer';
 import ListContainer from './containers/ListContainer';
 import FormContainer from './containers/FormContainer';
@@ -17,7 +16,7 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <NavigationContainer />
+                    <Navigation />
                     <Switch>
                         <Route path="/" exact>
                             <div className="TodoList">

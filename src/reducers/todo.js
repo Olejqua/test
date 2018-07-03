@@ -3,13 +3,14 @@ import {GET_TODOS, ADD_TODO, DELETE_TODO, EDIT_TODO, CHANGE_STATUS} from '../act
 function todoReducer(state = {}, action) {
     switch (action.type) {
         case CHANGE_STATUS:
-            if (state.id !== action.todo.id) {
+            if (state._id !== action.todo._id) {
                 return state;
             }
 
             return action.todo;
+
         case EDIT_TODO:
-            if (state.id !== action.todo.id) {
+            if (state._id !== action.todo._id) {
                 return state;
             }
 
@@ -33,7 +34,7 @@ export default function reducer(state = [], action) {
 
             return [
                 ...state.slice(0, index),
-                ...state.slice(index + 1)
+                ...state.slice(index + 1),
             ];
 
         case EDIT_TODO:
