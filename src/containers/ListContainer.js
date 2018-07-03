@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 
 import List from '../Components/List/List';
@@ -8,7 +7,8 @@ import { getFilteredTodos } from '../reducers';
 // Сопоставить состояние со свойствами (принимает состояние, возвращает объект)
 function mapStateToProps(state) {
     return {
-        todos: getFilteredTodos(state)    // Св-во презентационного компонента
+        todos: getFilteredTodos(state),    // Св-во презентационного компонента
+        fetching: state.fetching
     }
 }
 // Сопоставление "событий" с действиями изменяющими состояние

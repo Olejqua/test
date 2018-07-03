@@ -9,31 +9,36 @@ function Filter(props) {
     return (
         <div className="todo-filter">
             <FilterLink
-                icon="list"
+                icon="inbox"
+                tegName="Все"
                 active={props.activeFilter === 'ALL'}
-                onClick={() => props.onSetFilter('ALL')}>
+                onClick={() => props.onSetFilter('ALL')}>All
             </FilterLink>
 
             <FilterLink
-                icon="check_box"
+                icon="today"
+                tegName="Сегодня"
                 active={props.activeFilter === 'today'}
                 onClick={() => props.onSetFilter('today')}>
             </FilterLink>
 
             <FilterLink
-                icon="check_box_outline_blank"
+                icon="next_week"
+                tegName="Завтра"
                 active={props.activeFilter === 'tomorrow'}
                 onClick={() => props.onSetFilter('tomorrow')}>
             </FilterLink>
 
             <FilterLink
-                icon="check_box_outline_blank"
+                icon="view_week"
+                tegName="На неделю"
                 active={props.activeFilter === 'onWeek'}
                 onClick={() => props.onSetFilter('onWeek')}>
             </FilterLink>
 
             <FilterLink
-                icon="check_box_outline_blank"
+                icon="calendar_today"
+                tegName="В месяце"
                 active={props.activeFilter === 'onMonth'}
                 onClick={() => props.onSetFilter('onMonth')}>
             </FilterLink>

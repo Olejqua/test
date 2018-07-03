@@ -32,5 +32,6 @@
         }
     ],
 
-    "filter" :"ALL"
+    "filter": "ALL",
+    "fetching": false
 }

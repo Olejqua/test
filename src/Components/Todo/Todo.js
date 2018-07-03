@@ -42,7 +42,7 @@ class Todo extends Component {
     handleSubmit = () => {
         const {title, description, importance, members, start, end} = this.state;
         const {editTodo, id} = this.props;
-
+console.log(id)
         editTodo(id, title, description, importance, members, start, end);
 
         this.setState({editing: false});
