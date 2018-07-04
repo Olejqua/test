@@ -25,7 +25,9 @@ function List (props) {
 
 List.propTypes = {
     todos: PropTypes.arrayOf(PropTypes.shape({
-        _id: PropTypes.number.isRequired,
+        _id: PropTypes.oneOfType([
+            PropTypes.string.isRequired,
+            PropTypes.number.isRequired,]),
         title: PropTypes.string.isRequired,
         completed: PropTypes.bool.isRequired
     }))

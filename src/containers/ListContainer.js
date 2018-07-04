@@ -16,7 +16,7 @@ function mapDispatchToProps(dispatch) {
     return {
         changeStatus: id => dispatch(changeStatus(id)),
         deleteTodo: id => dispatch(deleteTodo(id)),    // {Название св-в компонента в качестве значений функции
-        editTodo: (id, title) => dispatch(editTodo(id, title)),
+        editTodo: (id, title, description, importance, members, start, end) => dispatch(editTodo(id, title, description, importance, members, start, end)),
     }
 }
 

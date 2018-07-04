@@ -29,15 +29,15 @@ class Todo extends Component {
         this.setState(state => ({isModalOpen: !state.isModalOpen}));
     };
 
-    applyValues = () => {
-        const {title, description, importance, members, start, end} = this.props;
-
-        this.setState ({title, description, importance, members, start, end});
-    };
-
-    componentWillMount() {
-        this.applyValues();
-    }
+    // applyValues = () => {
+    //     const {title, description, importance, members, start, end} = this.props;
+    //
+    //     this.setState ({title, description, importance, members, start, end});
+    // };
+    //
+    // componentWillMount() {
+    //     this.applyValues();
+    // }
 
     handleSubmit = () => {
         const {title, description, importance, members, start, end} = this.state;

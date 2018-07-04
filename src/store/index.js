@@ -4,11 +4,11 @@ import promise from 'redux-promise';
 import logger from 'redux-logger';
 
 import reducer from '../reducers';
-import localStorage from '../middleware/local-storage';
+import localStorage, { loadState } from '../middleware/local-storage';
 
-const initialState = {};
+const initialState = loadState();
 
-const middleware = [thunk, promise, localStorage, logger];
+const middleware = [thunk, promise, localStorage('todos'), logger];
 
 
 

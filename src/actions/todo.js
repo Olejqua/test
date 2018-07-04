@@ -22,8 +22,8 @@ export function getTodos() {
     };
 }
 
-export function addTodo(title) {
-    return axios.post('http://localhost:5000/api/items', { title })
+export function addTodo(title, description, importance, members, start, end) {
+    return axios.post('http://localhost:5000/api/items', { title, description, importance, members, start, end })
         .then(response => response.data)
         .then(todo => ({
             type: ADD_TODO,
@@ -40,8 +40,8 @@ export function deleteTodo(id) {
         }));
 }
 
-export function editTodo(id, title) {
-    return axios.put(`http://localhost:5000/api/items/${id}`, { title })
+export function editTodo(id, title, description, importance, members, start, end) {
+    return axios.put(`http://localhost:5000/api/items/${id}`, { title, description, importance, members, start, end })
         .then(response => response.data)
         .then(todo => ({
             type: EDIT_TODO,

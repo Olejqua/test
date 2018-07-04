@@ -6,7 +6,7 @@ import { addTodo } from "../actions";
 // Сопоставление "событий" с действиями изменяющими состояние
 function mapDispatchToProps(dispatch) {
     return {
-        addTodo: title => dispatch(addTodo(title))  // {Название св-в компонента в качестве значений функции
+        addTodo: (title, description, importance, members, start, end) => dispatch(addTodo(title, description, importance, members, start, end))  // {Название св-в компонента в качестве значений функции
     };
 }
 

@@ -32,33 +32,33 @@ class Form extends Component {
     };
 
     addNewTodo = event => {
-        const {title} = this.state;
+        const {title, description, importance, members, start, end} = this.state;
 
         const {addTodo} = this.props;
 console.log(addTodo);
         event.preventDefault();
 
-        //if (title && description && importance && members && start && end) {
-        if (title) {
-            addTodo(title);
+        if (title && description && importance && members && start && end) {
+        // if (title) {
+            addTodo(title, description, importance, members, start, end);
             this.setState({
                 title: '',
-                // description: '',
-                // importance: '',
-                // members: '',
-                // start: '',
-                // end: ''
+                description: '',
+                importance: '',
+                members: '',
+                start: '',
+                end: ''
             });
         } else {
             alert('Пожалуйста, заполните все поля!')
         }
-    }
+    };
 
     updateField = (event) => {
         const {id, value} = event.target;
 
         this.setState({[id]: value})
-    }
+    };
 
     render() {
         const {isModalOpen, title, description, importance, members, start, end} = this.state;
